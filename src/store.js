@@ -12,32 +12,32 @@ const defaultState = {
       completed:false,
       text:"First todos list ",
       todos:[
-    {
-      id: 1,
-      completed: false,
-      text: 'Read README'
-    },
-    {
-      id: 2,
-      completed: false,
-      text: 'Add one todo'
-    },
-    {
-      id: 3,
-      completed: false,
-      text: 'Add filters'
-    },
-    {
-      id: 4,
-      completed: false,
-      text: 'Add multiple lists'
-    },
-    {
-      id: 5,
-      completed: false,
-      text: 'Optional: add tests'
-    }
-  ]
+        {
+          id: 1,
+          completed: false,
+          text: 'Read README'
+        },
+        {
+          id: 2,
+          completed: false,
+          text: 'Add one todo'
+        },
+        {
+          id: 3,
+          completed: false,
+          text: 'Add filters'
+        },
+        {
+          id: 4,
+          completed: false,
+          text: 'Add multiple lists'
+        },
+        {
+          id: 5,
+          completed: false,
+          text: 'Optional: add tests'
+        }
+      ]
 
 
   },
@@ -45,35 +45,34 @@ const defaultState = {
     id:2,
     completed:false,
     text:"Second todos list ",
-    todos:[
-  {
-    id: 1,
-    completed: false,
-    text: 'Read README'
-  },
-  {
-    id: 2,
-    completed: false,
-    text: 'Add one todo'
-  },
-  {
-    id: 3,
-    completed: false,
-    text: 'Add filters'
-  },
-  {
-    id: 4,
-    completed: false,
-    text: 'Add multiple lists'
-  },
-  {
-    id: 5,
-    completed: false,
-    text: 'Optional: add tests'
-  }]
-
-
-}
+      todos:[
+      {
+        id: 1,
+        completed: false,
+        text: 'Read README'
+      },
+      {
+        id: 2,
+        completed: false,
+        text: 'Add one todo'
+      },
+      {
+        id: 3,
+        completed: false,
+        text: 'Add filters'
+      },
+      {
+        id: 4,
+        completed: false,
+        text: 'Add multiple lists'
+      },
+      {
+        id: 5,
+        completed: false,
+        text: 'Optional: add tests'
+      }
+    ]
+  }
   ]
 }
 
@@ -110,21 +109,6 @@ class TodosContainer extends Container {
 
   toggleComplete = async id => {
 
-   // const completed = !this.state.selectedItem.todos[id-1].completed
-    // We're using await on setState here because this comes from unstated package, not React
-    // See: https://github.com/jamiebuilds/unstated#introducing-unstated
-
-
-    await this.setState(state => {
-      let newState = {}
-      newState = state
-      let todos = newState.lists[this.state.listId].todos;
-      todos[id-1].completed = todos[id-1].completed == true ? false : true;
-      newState.lists[this.state.listId].todos = todos;
-      const lists = newState.lists
-      return { lists }
-    })
-
     await this.setState(state => {
       let selectedItem = state.selectedItem
       selectedItem.todos[id-1].completed = selectedItem.todos[id-1].completed == true ? false : true;
@@ -138,7 +122,7 @@ class TodosContainer extends Container {
 
     await this.setState(state => {
       
-      return {listId:item.id-1}
+      return {listId:item.id}
     })
     await this.setState(state => {
       
@@ -159,14 +143,14 @@ class TodosContainer extends Container {
       const item = {
         completed: false,
         text,
-        id: state.lists[this.state.listId].todos.length + 1,
+        id: state.lists[this.state.listId-1].todos.length + 1,
 
       }
 
-      let todos = state.lists[this.state.listId].todos.concat(item);
+      let todos = state.lists[this.state.listId-1].todos.concat(item);
       let newState = {}
       newState = this.state
-      newState.lists[this.state.listId].todos = todos    
+      newState.lists[this.state.listId-1].todos = todos    
       const list = state.lists
       return { list }
     })

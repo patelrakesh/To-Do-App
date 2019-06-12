@@ -111,7 +111,7 @@ class TodosContainer extends Container {
 
     await this.setState(state => {
       let selectedItem = state.selectedItem
-      selectedItem.todos[id-1].completed = selectedItem.todos[id-1].completed == true ? false : true;
+      selectedItem.todos[id-1].completed = selectedItem.todos[id-1].completed === true ? false : true;
       return { selectedItem:selectedItem }
     })
 

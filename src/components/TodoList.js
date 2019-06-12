@@ -15,7 +15,7 @@ const TodoList = ({ items, selectedFilter, toggleComplete, selectedItem }) => (
         }
         return (
           <div>
-            {selectedFilter == "all" && <TodoItem key={item2.id} {...item2} onComplete={onComplete} />}
+            {selectedFilter === "all" && <TodoItem key={item2.id} {...item2} onComplete={onComplete} />}
           </div>
         )
       })
@@ -29,7 +29,7 @@ const TodoList = ({ items, selectedFilter, toggleComplete, selectedItem }) => (
         return (
           <div>
             {
-              selectedFilter == "completed" && item2.completed == true && <TodoItem key={item2.id} {...item2} onComplete={onComplete} />
+              selectedFilter === "completed" && item2.completed === true && <TodoItem key={item2.id} {...item2} onComplete={onComplete} />
             }
 
           </div>
@@ -43,7 +43,7 @@ const TodoList = ({ items, selectedFilter, toggleComplete, selectedItem }) => (
         }
         return (
           <div>
-            {selectedFilter == "active" && item2.completed != true && <TodoItem key={item2.id} {...item2} onComplete={onComplete} />}
+            {selectedFilter === "active" && item2.completed !== true && <TodoItem key={item2.id} {...item2} onComplete={onComplete} />}
           </div>
         )
       })
